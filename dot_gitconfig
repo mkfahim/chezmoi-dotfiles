@@ -1,0 +1,49 @@
+# ── Identity ──────────────────────────────────────────────────
+
+[user]
+    name = mkfahim
+    email = mkfahim.359@gmail.com
+
+
+# ── Core ──────────────────────────────────────────────────────
+
+[core]
+    editor = nvim
+    autocrlf = input
+
+
+# ── Git LFS ───────────────────────────────────────────────────
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+
+# ── Defaults ──────────────────────────────────────────────────
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true
+
+
+# ── Diff & Merge ──────────────────────────────────────────────
+
+[diff]
+    colorMoved = zebra
+
+[merge]
+    conflictstyle = zdiff3
+
+
+# ── HTTP ──────────────────────────────────────────────────────
+
+[http]
+    version = HTTP/1.1
+
