@@ -1,0 +1,141 @@
+# ── Environment ───────────────────────────────────────────────
+
+# PATH
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+
+# Oh My Zsh
+export ZSH="$HOME/.oh-my-zsh"
+
+
+# ── Oh My Zsh ─────────────────────────────────────────────────
+
+# Completion
+# CASE_SENSITIVE="true"
+# HYPHEN_INSENSITIVE="true"
+
+# Updates
+# zstyle ':omz:update' mode reminder
+# zstyle ':omz:update' frequency 13
+
+# Shell behavior
+# ENABLE_CORRECTION="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# History
+# HIST_STAMPS="yyyy-mm-dd"
+
+# Plugins
+plugins=(
+    git
+    docker
+    docker-compose
+    colored-man-pages
+    command-not-found
+    aliases
+    sudo
+    extract
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+source "$ZSH/oh-my-zsh.sh"
+
+
+# ── User Preferences ──────────────────────────────────────────
+
+# Language
+# export LANG=en_US.UTF-8
+
+# Man pages
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# Editor
+if [[ -n "$SSH_CONNECTION" ]]; then
+    export EDITOR="vim"
+else
+    export EDITOR="nvim"
+fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+
+# ── Prompt ────────────────────────────────────────────────────
+
+eval "$(starship init zsh)"
+
+
+# ── FPGA Development ──────────────────────────────────────────
+
+# Quartus Prime
+export QSYS_ROOTDIR="/home/mkfahim/altera_lite/25.1std/quartus/sopc_builder/bin"
+
+# Questa License
+export SALT_LICENSE_FILE="$SALT_LICENSE_FILE;/home/mkfahim/.altera.quartus/questa_lic.dat"
+
+
+# ── Docker ────────────────────────────────────────────────────
+
+alias mlcad2026="sudo docker start -ai mlcad2026"
+
+
+# ── OSIC-TOOLS ────────────────────────────────────────────────
+
+# University environment · Z2A Course by Matt Venn
+osic-course() {
+    export DOCKER_TAG=2025.07
+    export DESIGNS="$HOME/asic"
+    export CONTAINER_NAME="iic-osic-tools_xvnc_uid_$(id -u)"
+
+    cd "$HOME/IIC-OSIC-TOOLS" || return
+
+    echo "University OSIC-TOOLS selected: $DOCKER_TAG"
+    echo "Designs directory: $DESIGNS"
+}
+
+# Newer environment · iic-osic-tools version_2026_10
+osic-new() {
+    export DOCKER_TAG=2026.10
+    export DESIGNS="$HOME/asic-2026.10"
+    export CONTAINER_NAME="iic-osic-tools_2026_10"
+    export WEBSERVER_PORT=8081
+    export VNC_PORT=5902
+
+    cd "$HOME/IIC-OSIC-TOOLS-2026.10" || return
+
+    echo "New OSIC-TOOLS selected: $DOCKER_TAG"
+    echo "Designs directory: $DESIGNS"
+}
+
+
+# ── Aliases: Filesystem ────────────────────────────────────────
+
+alias ls="ls -A --color=auto"
+alias ll="ls -lah --color=auto"
+alias la="ls -la"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias back="cd -"
+alias home="cd ~"
+alias croot="cd /"
+alias ctmp="cd /tmp"
+
+
+# ── Aliases: System ───────────────────────────────────────────
+
+alias df="df -h"
+alias free="free -h"
+alias ports="ss -tuln"
+alias listening="ss -tulpn"
+alias myip="hostname -I"
+alias sysinfo="uname -a"
+alias uptime="uptime -p"
+alias meminfo="free -h"
+
+
+# ── Custom ────────────────────────────────────────────────────
+
+# Personal aliases and functions goes here.
+
